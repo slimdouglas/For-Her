@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Lovely Bomboo ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Georgia", serif;
+      background: linear-gradient(180deg, #0f0c29, #302b63);
+      color: #f5f5f5;
+      line-height: 1.9;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: auto;
+      padding: 70px 22px 100px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      margin-bottom: 50px;
+      font-size: 1.8rem;
+    }
+
+    .paragraph {
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all 0.9s ease;
+    }
+
+    .paragraph.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    .music-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 90px;
+      font-style: italic;
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+
+    .heart {
+      text-align: center;
+      font-size: 38px;
+      margin-top: 40px;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    iframe {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>For You, Always</h1>
+
+    <div class="paragraph">The first time I saw you, I only saw a wonderfully made fine shii. In my (menace) head, I was like “Damn, I would hit that.”</div>
+
+    <div class="paragraph">Little did I know that you would quite literally be the manifestation of my whole world in one person (even before I hit that ;).</div>
+
+    <div class="paragraph">You taught me how it feels to be genuinely loved, and introduced me to a whole new world that I knew nothing of.</div>
+
+    <div class="paragraph">The Good, the Bad, and the Ugly, we've been through it all. Falling in love with you has to be the easiest thing I have ever done.</div>
+
+    <div class="paragraph">I don’t need anything else in my life as long as I am with you. Loving you feels less like a choice and more like a truth my entire being cannot refute.</div>
+
+    <div class="paragraph">I used to live like a menace — reckless, scared to care, living on fleeting connections. I see no meaning in my life without your presence.</div>
+
+    <div class="paragraph">“You know you love her when you start doing things you never did.” And we both know there’s a long list now 😉.</div>
+
+    <div class="paragraph">You are my joy, my peace, my inspiration, and my best adventure yet.</div>
+
+    <div class="paragraph">Doing life with you is my most prized possession. I can’t wait till you’re all mine — legally or using an Indian man on a plane.</div>
+
+    <div class="paragraph">Thanks for letting me be myself. My heart is forever yours.</div>
+
+    <div class="heart">❤️</div>
+
+    <div class="footer">— Yours, always</div>
+  </div>
+
+  <!-- Music Button -->
+  <button class="music-btn" onclick="playMusic()">▶ Play our song</button>
+
+  <!-- YouTube Embed -->
+  <iframe
+    id="ytplayer"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/hl3-ZPg-JAA?enablejsapi=1"
+    allow="autoplay">
+  </iframe>
+
+  <script>
+    const paragraphs = document.querySelectorAll('.paragraph');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    paragraphs.forEach(p => observer.observe(p));
+
+    function playMusic() {
+      const iframe = document.getElementById("ytplayer");
+      iframe.src += "&autoplay=1";
+      document.querySelector(".music-btn").innerText = "🎶 Playing";
+    }
+  </script>
+
+</body>
+</html>
