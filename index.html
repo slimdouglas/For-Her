@@ -17,7 +17,7 @@
       color: #f5f5f5;
       line-height: 1.9;
     }
-
+    
     .container {
       max-width: 680px;
       margin: auto;
@@ -87,13 +87,98 @@
     iframe {
       display: none;
     }
+    .heart-float {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  opacity: 0.9;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.4);
+    opacity: 0;
+  }
+}
+    .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup-box {
+  background: linear-gradient(160deg, #1f1c2c, #928dab);
+  padding: 35px 28px;
+  border-radius: 18px;
+  text-align: center;
+  max-width: 320px;
+  color: #fff;
+  animation: popIn 0.6s ease;
+}
+
+.popup-box h2 {
+  margin-top: 0;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.popup-box p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.popup-box button {
+  margin-top: 25px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <h1>For Katbooty, Always</h1>
+    <h1>For My Bombo, Always</h1>
 
     <div class="paragraph">The first time I saw you, I only saw a wonderfully made fine shii. In my (menace) head, I was like “Damn, I would hit that.”</div>
 
@@ -119,6 +204,19 @@
 
     <div class="footer">— Yours, always</div>
   </div>
+  <div class="popup-overlay" id="lovePopup">
+    <div class="popup-box">
+      <h2>One last thing…</h2>
+        <p>
+          If this page could speak out loud, it would tell you that you are my
+          favorite part of every day, every version of me, and every future I
+          imagine.  
+          <br><br>
+          I choose you — today, tomorrow, and every lifetime after.
+        </p>
+    <button onclick="closePopup()">❤️ I know</button>
+  </div>
+</div>
 
   <!-- Music Button -->
   <button class="music-btn" onclick="playMusic()">▶ Play our song</button>
@@ -128,7 +226,7 @@
     id="ytplayer"
     width="0"
     height="0"
-    src="https://www.youtube.com/embed/hl3-ZPg-JAA?enablejsapi=1"
+    src="https://www.youtube.com/watch?v=vBy7FaapGRo"
     allow="autoplay">
   </iframe>
 
@@ -151,7 +249,44 @@
       document.querySelector(".music-btn").innerText = "🎶 Playing";
     }
   </script>
+<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart-float");
+    heart.innerText = "❤️";
 
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 12 + 16 + "px";
+    heart.style.animationDuration = Math.random() * 2 + 5 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 7000);
+  }
+
+  setInterval(createHeart, 900);
+</script>
+<script>
+  let popupShown = false;
+
+  window.addEventListener("scroll", () => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 &&
+      !popupShown
+    ) {
+      popupShown = true;
+      document.getElementById("lovePopup").classList.add("active");
+    }
+  });
+
+  function closePopup() {
+    document.getElementById("lovePopup").classList.remove("active");
+  }
+</script>
+  
 </body>
 </html>
+
 
